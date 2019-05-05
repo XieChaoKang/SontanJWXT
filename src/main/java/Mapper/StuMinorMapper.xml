@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="Mapper.StuMinorMapper">
+
+    <resultMap id="StuMinorMap" type="StuMinor">
+        <result property="stuId" column="stuId"/>
+        <result property="averageScoreOne" column="averageScoreOne"/>
+        <result property="averageScoreTwo" column="averageScoreTwo"/>
+        <result property="averagePoint" column="averagePoint"/>
+        <result property="totalCredit" column="totalCredit"/>
+        <collection property="stuScoreInfos" column="stuId" select="Mapper.Course_ScoreMapper.queryCourse_Score"></collection>
+    </resultMap>
+
+    <insert id="insertStuMinor" parameterType="StuMinor" useGeneratedKeys="true" keyProperty="id">
+        insert ignore into stuminor(stuId,averageScoreOne,averageScoreTwo,averagePoint,totalCredit) values
+        (#{stuId},#{averageScoreOne},#{averageScoreTwo},#{averagePoint},#{totalCredit})
+    </insert>
+    
+    <select id="queryStuMinorByStuId" parameterType="String" resultMap="StuMinorMap">
+        select *from stuminor where stuId = #{stuId}
+    </select>
+
+</mapper>

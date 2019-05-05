@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="Mapper.ScoreMapper">
+
+    <insert id="insertScore" parameterType="Score" useGeneratedKeys="true" keyProperty="id">
+       insert ignore into stuscore(stuId,grade,trem,nature,courseName,credit,point,score) values
+       (#{stuId},#{grade},#{trem},#{nature},#{courseName},#{credit},#{point},#{score})
+    </insert>
+    
+    <select id="queryScoreByStuId" parameterType="Grade_Trem" resultType="Score">
+        select *from  stuscore where stuId = #{stuId}
+        <if test="grade != '' and grade !=null">
+            and  grade = #{grade}
+        </if>
+        <if test="trem != '' and trem !=null">
+            and  trem = #{trem}
+        </if>
+        <if test="nature != '' and nature !=null">
+            and  nature = #{nature}
+        </if>
+
+    </select>
+
+</mapper>

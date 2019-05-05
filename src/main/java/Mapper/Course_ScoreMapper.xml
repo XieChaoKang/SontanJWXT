@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="Mapper.Course_ScoreMapper">
+
+    <insert id="insertCourse_Score" parameterType="Course_Score" keyProperty="int" useGeneratedKeys="true">
+          insert ignore into course_score(stuId,courseName,score) values
+          (#{stuId},#{courseName},#{score})
+    </insert>
+
+    <select id="queryCourse_Score" parameterType="String" resultType="Course_Score">
+        select courseName,score from course_score where stuId = #{stuId}
+    </select>
+
+</mapper>
